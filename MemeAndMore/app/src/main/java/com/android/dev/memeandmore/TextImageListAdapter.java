@@ -1,4 +1,4 @@
-package android.coursera.dailyselfie;
+package com.android.dev.memeandmore;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,11 +11,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by rupal on 24/4/15.
- */
 public class TextImageListAdapter extends BaseAdapter {
-    private final List<SelfieListItem> mItems = new ArrayList<SelfieListItem>();
+    private final List<TextImageItem> mItems = new ArrayList<TextImageItem>();
 
     private final Context mContext;
     private static final String TAG = "TextImageListAdapter";
@@ -27,7 +24,7 @@ public class TextImageListAdapter extends BaseAdapter {
     // Add a TextImageItem to the adapter.
     // Notify observers that the data set has changed.
 
-    public void add(SelfieListItem item) {
+    public void add(TextImageItem item) {
         mItems.add(item);
         notifyDataSetChanged();
     }
@@ -37,39 +34,39 @@ public class TextImageListAdapter extends BaseAdapter {
         mItems.clear();
         notifyDataSetChanged();
     }
-    // Return the number of SelfieListItems
+    // Return the number of TextImageListItems
 
     @Override
     public int getCount() {
         return mItems.size();
     }
 
-    // Retrieve the number of SelfieItems
+    // Retrieve the number of TextImageItems
     @Override
     public Object getItem(int pos) {
         return mItems.get(pos);
     }
 
-    // Get the ID for the SelfieListItem
+    // Get the ID for the TextImageListItem
     // TODO : check if we need this
     @Override
     public long getItemId(int pos) {
         return pos;
     }
 
-    // Create a View for the SelfieItem at the specified position.
+    // Create a View for the TextImageItem at the specified position.
 
     public View getView(int position, View convertView, ViewGroup parent) {
 
 
-        // Get the current SelfieListItem
+        // Get the current TextImageListItem
 
-        final SelfieListItem selfieListItem = (SelfieListItem) getItem(position);
+        final TextImageItem textImageItem = (TextImageItem) getItem(position);
 
-        // Inflate the View for the SelfieListItem from the xml file.
+        // Inflate the View for the TextImageListItem from the xml file.
         if ( convertView == null) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.selfie_list_item, parent, false);
+            convertView = inflater.inflate(R.layout.text_image_list_item, parent, false);
 
         }
         else {
@@ -78,10 +75,10 @@ public class TextImageListAdapter extends BaseAdapter {
 
         // Fill in the specific item.
         TextView tvDate = (TextView) convertView.findViewById(R.id.textView_date);
-        tvDate.setText("  " + SelfieListItem.LISTVIEW_DATE_FORMAT.format(selfieListItem.getDate()));
+        tvDate.setText(TextImageItem.LISTVIEW_DATE_VIEW_FORMAT.format(textImageItem.getDate()));
 
         ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView_thumbnail);
-        imageView.setImageBitmap(selfieListItem.getThumbnail());
+        imageView.setImageBitmap(textImageItem.getThumbnail());
 
         return convertView;
 

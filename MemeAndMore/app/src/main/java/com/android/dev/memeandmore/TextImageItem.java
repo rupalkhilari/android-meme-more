@@ -1,4 +1,4 @@
-package android.coursera.dailyselfie;
+package com.android.dev.memeandmore;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -10,20 +10,17 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * Created by rupal on 24/4/15.
- */
 
 public class TextImageItem {
     public final static String DATE = "date";
     public final static String THUMBNAIL = "thumbnail";
     public final static String PATH = "path";
-    public final static String TAG = "SelfieListItem";
+    public final static String TAG = "TextImageListItem";
     public static final String ITEM_SEP = System.getProperty("line.separator");
 
     public final static SimpleDateFormat FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
     public final static SimpleDateFormat LISTVIEW_DATE_FORMAT = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US);
-
+    public final static SimpleDateFormat LISTVIEW_DATE_VIEW_FORMAT = new SimpleDateFormat("dd MMM yyyy HH:mm:ss", Locale.US);
     private Date mDate = null;
 
     // Make sure this is initialized.
@@ -32,14 +29,14 @@ public class TextImageItem {
     // Holds the path of the image.
     private Uri mImageUri = null;
 
-    SelfieListItem(Date date, Bitmap thumbnail, Uri uri) {
+    TextImageItem(Date date, Bitmap thumbnail, Uri uri) {
         this.mThumbnail = thumbnail;
         this.mDate = date;
         this.mImageUri = uri;
     }
 
-    // Create a new SelfieItem from the packaged intent.
-    SelfieListItem(Intent data) {
+    // Create a new TextImageItem from the packaged intent.
+    TextImageItem(Intent data) {
         mDate = new Date();
         Bundle extras = data.getExtras();
         mThumbnail = (Bitmap) extras.get("data");
